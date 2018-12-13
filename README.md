@@ -1,4 +1,4 @@
-# GoNode - Rocketseat
+# GoNative - Rocketseat
 
 ![Rocketseat](https://rocketseat.com.br/static/og.png)
 
