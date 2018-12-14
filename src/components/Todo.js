@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { View, Text, StyleSheet } from "react-native";
 
 export default class todo extends Component {
@@ -7,8 +7,8 @@ export default class todo extends Component {
     texto: "Todo padrão!"
   };
 
-  static PropTypes = {
-    texto: PropTypes.string.isRequired
+  static propTypes = {
+    texto: propTypes.string.isRequired
   };
   render() {
     return (
