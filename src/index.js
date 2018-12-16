@@ -1,32 +1,60 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Button } from "react-native";
-import Todo from "./components/Todo";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ScrollView
+} from "react-native";
+import Post from "./components/Post";
 export default class App extends Component {
   state = {
-    todos: [
-      { id: 0, conteudo: "Primeiro post" },
-      { id: 1, conteudo: "Segundo post" },
-      { id: 2, conteudo: "GoNative da Rocket" }
+    posts: [
+      {
+        id: 0,
+        author: "Victor Hermes",
+        description: "Falando um pouco sobre mim",
+        content:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+      },
+      {
+        id: 1,
+        author: "Monique Rodrigues",
+        description: "Conhecendo o mundo",
+        content:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+      },
+      {
+        id: 2,
+        author: "Monique Rodrigues",
+        description: "Conhecendo o mundo",
+        content:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+      },
+      {
+        id: 3,
+        author: "Monique Rodrigues",
+        description: "Conhecendo o mundo",
+        content:
+          "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+      }
     ]
   };
 
-  addPost = () => {
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        { id: Math.random(), conteudo: "Esse é o novo amigo!" }
-      ]
-    });
-  };
-
   render() {
+    const { posts } = this.state;
     return (
       <View style={styles.container}>
-        <Todo texto="Fazer um bom café!" />
-        {this.state.todos.map(todos => (
-          <Todo key={todos.id} texto={todos.conteudo} />
-        ))}
-        <Button title="Adicionar" onPress={this.addPost} />
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>GoNotes</Text>
+        </View>
+
+        <ScrollView>
+          {posts.map(post => (
+            <Post key={post.id} data={post} />
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -35,8 +63,26 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#ffa07a"
+  },
+  header: {
+    backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    ...Platform.select({
+      ios: {
+        height: 76,
+        paddingTop: 20
+      },
+      android: {
+        height: 56,
+        paddingTop: 0
+      }
+    })
+  },
+  headerTitle: {
+    color: "#000",
+    fontSize: 16,
+    fontWeight: "bold"
   }
 });
