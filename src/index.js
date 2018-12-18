@@ -8,6 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import Post from "./components/Post";
+import "./config/ReactotronConfig";
 export default class App extends Component {
   state = {
     posts: [
